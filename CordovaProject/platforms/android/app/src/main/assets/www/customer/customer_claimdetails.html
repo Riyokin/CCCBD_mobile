@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8"/>
+    <script src="jquery-3.3.1.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title></title>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet"/>
+    <!-- Google Fonts-->
+    <link href='open+sans.css' rel='stylesheet' type='text/css'/>
+    <!-- TABLE STYLES-->
+    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = window.location.search.substring(1),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                }
+            }
+        };
+        let myArr;
+
+        function buildHtmlTable() {
+            let xmlhttp = new XMLHttpRequest();
+            let url = "https://cccbd.top:8443/RESTHello/claim/detail?claimNo=" + getUrlParameter('id');
+            xmlhttp.withCredentials = true; //!!
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                    myArr = JSON.parse(xmlhttp.responseText);
+                    document.getElementById('name').innerHTML = "Name:" + myArr['real_name'];
+                    if(myArr['feedback']!=null){
+                        document.getElementById('detail').innerHTML = "Claim Date:"+myArr['claim_date']+"<br>"+"Loss date:"+
+                            myArr['loss_date']+"<br>"+"Policy Number:"+myArr['policyNo']+"<br>"+"Details:"+myArr['detail']+"<br>"+"Feedback:"+myArr['feedback'];
+                    }else{
+                        document.getElementById('detail').innerHTML = "Claim Date:"+myArr['claim_date']+"<br>"+"Loss date:"+
+                            myArr['loss_date']+"<br>"+"Policy Number:"+myArr['policyNo']+"<br>"+"Details:"+myArr['detail'];
+                    }
+                    document.getElementById('claimNo').innerHTML = "ClaimNo:" + myArr['ClaimNo'];
+                }
+
+            };
+        }
+
+        $(document).ready(function () {
+           
+            $("#button2").click(function () {
+                send()
+                window.location.href = "customer_process.html";
+            });
+        });
+
+        function urlencodeFormData(fd) {
+            var params = new URLSearchParams();
+            for (var pair of fd.entries()) {
+                typeof pair[1] == 'string' && params.append(pair[0], pair[1]);
+            }
+            return params.toString();
+        }
+
+        function send() {
+            let mydata = new FormData();
+            var $textArea = $('#instruction'),
+                textArea = $textArea.val();
+            mydata.append("appendage", textArea);
+            mydata.append("claimNo", getUrlParameter('id'));
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://cccbd.top:8443/RESTHello/manage/append', true);
+            xhr.withCredentials = true; //!!
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                console.log(this.responseText);
+                alert('success');
+                window.location.href = "process.html";
+            };
+            xhr.send(urlencodeFormData(mydata));
+        }
+    </script>
+</head>
+<body onload="buildHtmlTable()">
+<div id="wrapper">
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../index.html"><i class="fa fa-comments"></i> <strong>Hibernia-Sino</strong></a>
+        </div>
+
+        <ul class="nav navbar-top-links navbar-right">
+
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="../index.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+    </nav>
+
+
+    <!--/. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+
+                <li>
+                    <a href="homepage_customer.html"><i class="fa fa-dashboard"></i> Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="Lost-custo.html"><i class="fa fa-dashboard"></i> Lost luggage</a>
+                </li>
+
+                <li>
+                    <a href="customer_process.html" class="active-menu"><i class="fa fa-dashboard"></i> Process Procedure</a>
+                </li>
+
+                <li>
+                    <a href="policy.html"><i class="fa fa-dashboard"></i>Policies</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <!--/. NAV side  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">
+                        Claim Details
+                        <small>detail information</small>
+                    </h1>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <div class="row">
+                <div class="col-md-4 col-sm-4" style="size: height:100%;width:100%;">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" id="name">
+                            Name
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading" id="claimNo">
+                            ClaimNo
+                        </div>
+                        <div class="panel-body">
+                            <p id="detail"></p>
+                        </div>
+                        <div class="panel-footer">
+
+                            Instruction:<textarea class="form-control" placeholder="   details about requirement "
+                                                  rows="3" id="instruction"></textarea>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <div class="row">
+                <div class="col-md-6">
+                   
+                    <button type="button" class="btn btn-success btn-circle" style="position:absolute;margin-left: 80%"
+                            id="button2"><i class="fa fa-hand-o-right fa-2x"></i>
+                    </button>
+                    <!-- <button type="button" class="btn btn-info btn-circle" style="position: absolute;margin-left: 120%"><i class="fa fa-info fa-2x"></i> -->
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+<!-- DATA TABLE SCRIPTS -->
+<script src="assets/js/dataTables/jquery.dataTables.js"></script>
+<script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').dataTable();
+    });
+</script>
+<!-- Custom Js -->
+<script src="assets/js/custom-scripts.js"></script>
+
+
+</body>

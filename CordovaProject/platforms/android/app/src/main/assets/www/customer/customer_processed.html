@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <script src="../i18next.min.js"></script>
+    <script src="../jquery-i18next.min.js"></script>
+    <script src="../translation.js"></script>
+    <title></title>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet"/>
+    <!-- Google Fonts-->
+    <link href='open+sans.css' rel='stylesheet' type='text/css'/>
+    <!-- TABLE STYLES-->
+    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        function buildHtmlTable(selector) {
+            $(selector).empty();
+            let xmlhttp = new XMLHttpRequest();
+            let url = "https://cccbd.top:8443/RESTHello/claim/processed_claims_user";
+            xmlhttp.withCredentials = true;
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            let myArr = '';
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                    myArr = JSON.parse(xmlhttp.responseText);
+                    console.log(myArr);
+                    console.log(xmlhttp.responseText);
+                    var columns = addAllColumnHeaders(myArr, selector);
+                    for (var i = 0; i < myArr.length; i++) {
+                        var row$ = $('<tr class="gradeA"/>');
+                        var index = 0;
+                        for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+                            var cellValue = myArr[i][columns[colIndex]];
+                            if (cellValue == null) cellValue = "";
+                            if (index != 0) {
+                                row$.append($('<td class ="id' + index + '"/>').html(cellValue));
+                            } else {
+                                row$.append($("<td><a href=\"customer_claimdetails.html?id=" + cellValue + "\">" + cellValue + "</a></td"));
+                            }
+                            index++;
+                        }
+
+                        $(selector).append(row$);
+                    }
+                }
+
+            };
+        }
+
+        // Adds a header row to the table and returns the set of columns.
+        // Need to do union of keys from all records as some records may not contain
+        // all records.
+        function addAllColumnHeaders(myList, selector) {
+            var columnSet = [];
+            var headerTr$ = $('<thead/>')
+            var headerTr1$ = $('<tr/>');
+            for (var i = 0; i < myList.length; i++) {
+                var rowHash = myList[i];
+                for (var key in rowHash) {
+                    if ($.inArray(key, columnSet) === -1) {
+                        columnSet.push(key);
+                        headerTr1$.append($('<th/>').html(key));
+                    }
+                }
+            }
+            headerTr$.append(headerTr1$)
+            $(selector).append(headerTr$);
+            return columnSet;
+        }
+    </script>
+</head>
+<body onload="buildHtmlTable('#dataTables-example')" class="translate">
+<div id="wrapper">
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../index.html"><i class="fa fa-comments"></i> <strong>Hibernia-Sino</strong></a>
+        </div>
+
+        <ul class="nav navbar-top-links navbar-right">
+
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#" ><i class="fa fa-user fa-fw" ></i><mylable data-i18n="noun.profile"> User Profile</mylable></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i><mylable data-i18n="noun.setting"> Settings</mylable></a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="../index.html"><i class="fa fa-sign-out fa-fw"></i><mylable data-i18n="noun.logout"> Logout</mylable> </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+    </nav>
+
+
+    <!--/. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+
+                <li>
+                    <a href="homepage_customer.html"><i class="fa fa-dashboard"></i>  <mylable data-i18n="noun.dashboard">Dashboard</mylable></a>
+                </li>
+
+                <li>
+                    <a href="Lost-custo.html"><i class="fa fa-suitcase"></i>  <mylable data-i18n="noun.lostluggage">Lost luggage</mylable>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="customer_process.html"><i class="fa fa-spinner"></i> <mylable data-i18n="noun.procedure">Process Procedure</mylable></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="customer_processed.html" class="active-menu"><mylable data-i18n="noun.processed_claim">Processed claim</mylable></a>
+                        </li>
+                        <li>
+                            <a href="customer_unprocessed.html" ><mylable data-i18n="noun.unprocessed_claim">Unprocessed claim</mylable></a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="policy.html"><i class="fa fa-list"></i><mylable data-i18n="noun.policies">Policies</mylable></a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">
+                        Processed Claim
+                        <small> ...</small>
+
+                    </h1>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Advanced Tables
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+
+        </div>
+        <div class="translate" style="top:30px;position:absolute;right:20px">
+            <select class="selectpicker" data-width="fit" onchange="changeLanguage(this)" id="lan_selecter">
+                <option value="en" data-content='English' data-i18n="noun.english"></option>
+                <option value="ch" data-content='Chinese' data-i18n="noun.chinese"></option>
+            </select>
+        </div>
+
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+
+    <!-- Bootstrap Js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- DATA TABLE SCRIPTS -->
+    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+        });
+    </script>
+    <!-- Custom Js -->
+    <script src="assets/js/custom-scripts.js"></script>
+
+
+</body>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Login</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="index.css">
+    <script src="jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="bootstrap-select-1.13.9/dist/css/bootstrap-select.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="bootstrap-select-1.13.9/dist/js/bootstrap-select.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-4.1.3/css/bootstrap.min.css">
+    <script src="popper.min.js"></script>
+    <script src="bootstrap-4.1.3/js/bootstrap.min.js"></script>
+    <script src="i18next.min.js"></script>
+    <script src="jquery-i18next.min.js"></script>
+    <script src="translation.js"></script>
+    <style type="text/css">
+        body {
+            background-image: url('image/login.jpg');
+            background-position: 0px 80px;
+            background-size: 100%, 100%;
+            background-repeat: no-repeat;
+        }
+
+        p {
+            margin: 1px;
+            font-size: 18px;
+        }
+
+        input:focus {
+            border: 2px solid #FFFACD;
+        }
+
+        br {
+            font-family: cursive;
+            margin: 5px;
+        }
+
+        select {
+            border: 2px solid #BEBEBE;
+            background-color: #D3D3D3;
+        }
+
+        body {
+            background-color: #ff8844;
+        }
+
+
+    </style>
+
+    <script type="text/javascript">
+        function logincust() {
+            let mydata = new FormData();
+            mydata.append("username", document.getElementById('cu').value);
+            mydata.append("password", document.getElementById('cp').value);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://cccbd.top:8443/RESTHello/login/send', true);
+            xhr.withCredentials = true;	//!!
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                console.log(this.responseText);
+                //document.getElementById('result').innerHTML=this.responseText;
+                if (this.status !== 200) {
+                    alert("Incorrect username or password");
+                    //document.getElementById('result1').innerHTML = "Incorrect username or password";
+                } else {
+                    window.location.href = 'customer/homepage_customer.html';
+                }
+            };
+            xhr.send(urlencodeFormData(mydata));
+        }
+
+        function loginstaf() {
+            let mydata = new FormData();
+            mydata.append("username", document.getElementById('su').value);
+            mydata.append("password", document.getElementById('sp').value);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://cccbd.top:8443/RESTHello/login/send_employee', true);
+            xhr.withCredentials = true;	//!!
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                console.log(this.responseText);
+                //document.getElementById('result').innerHTML=this.responseText;
+                if (this.status !== 200) {
+                    alert("Incorrect username or password");
+                    //document.getElementById('result2').innerHTML = "Incorrect username or password";
+                } else {
+                    window.location.href = 'employee/employee_dashboard.html';
+                }
+
+            };
+
+            xhr.send(urlencodeFormData(mydata));
+        }
+
+        function urlencodeFormData(fd) {
+            var params = new URLSearchParams();
+            for (var pair of fd.entries()) {
+                typeof pair[1] == 'string' && params.append(pair[0], pair[1]);
+            }
+            return params.toString();
+        }
+
+    </script>
+</head>
+<body id="bod" style="padding:1px;">
+<img src="image/icon.png" width="75px" height="75px" style="left:2px;top:2px;position:absolute;">
+<b style="font-size: 30px; left:90px;top:25px;position:absolute;">Hibernia-Sino Travel Insurance Company</b>
+<div class="translate" style="top:30px;position:absolute;right:200px">
+    <select class="selectpicker" data-width="fit" onchange="changeLanguage(this)" id="lan_selecter">
+        <option value="en" data-i18n="noun.english"></option>
+        <option value="ch" data-i18n="noun.chinese"></option>
+    </select>
+</div>
+<div class="translate">
+    <div class="container login-container">
+        <div class="row">
+            <div class="col-md-6 login-form-2">
+                <h3 data-i18n="noun.userlogin">Users login</h3>
+				<a href="employee/employee_dashboard.html" >asd</a>
+                <form onsubmit="event.preventDefault();">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="username" id="cu"
+                               data-i18n="[placeholder]noun.username"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="password" id="cp"
+                               data-i18n="[placeholder]noun.password"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btnSubmit" value="Login"
+                               onclick="logincust()" data-i18n="[value]noun.login"/>
+                    </div>
+                    <div class="form-group">
+                        <a href="register_page_Eng.html" class="ForgetPwd" data-i18n="noun.create">Create new
+                            account</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="reset_page_customer.html" class="ForgetPwd" data-i18n="noun.forget">Forget Password?</a>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 login-form-1">
+                <h3 data-i18n="noun.employeelogin">Employee login</h3>
+                <form onsubmit="event.preventDefault();">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="username" id="su"
+                               data-i18n="[placeholder]noun.username"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="password" id="sp"
+                               data-i18n="[placeholder]noun.password"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btnSubmit" value="Login"
+                               data-i18n="[value]noun.login" onclick="loginstaf()"/>
+                    </div>
+                    <div class="form-group">
+                        <a href="reset_page_employee.html" class="ForgetPwd" data-i18n="noun.forget">Forget Password?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script color="0,0,0" opacity='0.75' count="128"  src="lib/canvas-nest.js"></script>
+</body>
+
+</html>

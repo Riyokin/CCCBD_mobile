@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<head>
+    <script src="../jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#dropdown").click();
+        });
+    </script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title></title>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet"/>
+    <!-- Google Fonts-->
+    <link href='open+sans.css' rel='stylesheet' type='text/css'/>
+    <!-- TABLE STYLES-->
+    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        function buildHtmlTable() {
+            let xmlhttp = new XMLHttpRequest();
+            let url = "https://cccbd.top:8443/RESTHello/manage/my_number";
+            xmlhttp.withCredentials = true;
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            let myArr = '';
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                    myArr = JSON.parse(xmlhttp.responseText);
+                    document.getElementById('unprocessed').innerHTML = myArr['unprocessed'];
+                    document.getElementById('processed').innerHTML = myArr['processed'];
+                }
+
+            };
+        }
+
+
+    </script>
+</head>
+<body onload="buildHtmlTable()">
+<div id="wrapper">
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header" id="xiala1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../index.html" id="title1"><i class="fa fa-comments" id="title2"></i> <strong id="title3">Hibernia-Sino</strong></a>
+        </div>
+
+        <ul class="nav navbar-top-links navbar-right" id="xiala2"><li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"><i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i></a><ul class="dropdown-menu dropdown-user"><li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li><li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li><li class="divider"></li><li><a href="../index.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li></ul></li></ul>
+    </nav>
+
+
+    <!--/. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+
+                <li>
+                    <a href="homepage_customer.html"><i class="fa fa-dashboard"></i> Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="Lost-custo.html"><i class="fa fa-suitcase"></i> Lost luggage</a>
+                </li>
+
+                <li>
+                    <a id="dropdown" href="customer_process.html"  class="active-menu"><i class="fa fa-spinner"></i> Process Procedure</a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="customer_processed.html">Processed claim</a>
+                        </li>
+                        <li>
+                            <a href="customer_unprocessed.html">Unprocessed claim</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="policy.html"><i class="fa fa-list"></i>Policies</a>
+                </li>
+
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+    <div id="page-wrapper">
+        <div id="page-inner">
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">
+                        Process Procedure
+                        <small>claim of lost-baggage</small>
+                    </h1>
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary text-center no-boder bg-color-red red">
+                        <div class="panel-left pull-left red">
+                            <i class="fa fa-edit fa-5x"></i>
+
+                        </div>
+                        <div class="panel-right pull-right" onclick="fun()">
+                            <h3 id="unprocessed"></h3>
+                            <strong> Unprocessed </strong>
+
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    function fun() {
+                        window.location.href = 'customer_unprocessed.html';
+                    }
+
+                    function fpr() {
+                        window.location.href = 'customer_processed.html';
+                    }
+                </script>
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary text-center no-boder bg-color-blue blue">
+                        <div class="panel-left pull-left blue">
+                            <i class="fa fa-fw fa-file fa-5x"></i>
+                        </div>
+
+                        <div class="panel-right pull-right" onclick="fpr()">
+                            <h3 id="processed"></h3>
+                            <strong> Processed</strong>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- /. WRAPPER  -->
+        <!-- JS Scripts-->
+        <!-- jQuery Js -->
+        <script src="assets/js/jquery-1.10.2.js"></script>
+        <!-- Bootstrap Js -->
+        <script src="assets/js/bootstrap.min.js"></script>
+        <!-- Metis Menu Js -->
+        <script src="assets/js/jquery.metisMenu.js"></script>
+        <!-- DATA TABLE SCRIPTS -->
+        <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+        <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+        </script>
+        <!-- Custom Js -->
+        <script src="assets/js/custom-scripts.js"></script>
+        <script type="text/javascript">
+            if (document.body.clientWidth<400){
+                document.getElementById('title1').style.display='none';
+                document.getElementById('xiala2').style.display='none';
+                var a = document.getElementById('xiala1').innerHTML;
+                document.getElementById('xiala1').innerHTML = a+"<ul class=\"nav navbar-top-links navbar-right\" id=\"xiala2\"><li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" aria-expanded=\"false\"><i class=\"fa fa-user fa-fw\"></i> <i class=\"fa fa-caret-down\"></i></a><ul class=\"dropdown-menu dropdown-user\"><li><a href=\"#\"><i class=\"fa fa-user fa-fw\"></i> User Profile</a></li><li><a href=\"#\"><i class=\"fa fa-gear fa-fw\"></i> Settings</a></li><li class=\"divider\"></li><li><a href=\"../index.html\"><i class=\"fa fa-sign-out fa-fw\"></i> Logout</a></li></ul></li></ul>"
+            }
+        </script>
+</body>
