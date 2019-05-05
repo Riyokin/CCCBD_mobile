@@ -19,7 +19,7 @@
             background-image: url('../image/background.jpeg');
             background-position: 0px 100px;
             background-repeat: no-repeat;
-            background-size: 100% 550px;
+            background-size: 180% 550px;
         }
     </style>
 
@@ -101,20 +101,15 @@
 
 
 </head>
-<div class="translate" style="top:30px;position:absolute;right:200px">
-    <select class="selectpicker" data-width="fit" onchange="changeLanguage(this)" id="lan_selecter">
-        <option value="en" data-content='English' data-i18n="noun.english"></option>
-        <option value="ch" data-content='Chinese' data-i18n="noun.chinese"></option>
-    </select>
-</div>
+
 <body style="background-color: #ff8844" class="translate">
 <section class="HomePage">
-    <img src="../image/icon.PNG" width="120px" height="120px">
-    <b style="font-size: 30px; position: absolute; top: 35px">Hibernia-Sino Travel Insurance Company</b>
+    <img src="../image/icon.png" width="10%" height="10% ">
+    <b style="font-size: 150%; left:0%; top: 0%;position: relative">Hibernia-Sino Travel Insurance Company</b>
     <a href="../index.html" style="float:right;" data-i18n="noun.logout">log out</a>
+	
 
-
-    <div class="hhhhh" style="width: 800px;height: 400px;position: absolute; top: 0px; left: 20%">
+    <div class="hhhhh" style="width: 80%;height: 80%;position: relative; top: 0%; " align="center">
 
         <ul>
             <li><img src="../image/ad5.JPG" alt="" style="width:3200px; height: 400px "></li>
@@ -123,16 +118,24 @@
 
     </div>
 
-    <div>
+    <div >
         <form>
-            <a href="" style="font-size: 15px; position: absolute; right: 30%;top: 80px;font-weight:bolder;" data-i18n="noun.about_us">About Us</a>
-            <a href="" style="font-size: 15px; position: absolute; right: 20%;top: 80px;font-weight:bolder;" data-i18n="noun.contact_us">Contact
+            <a href="" style="font-size: 15px; position: absolute; right: 60%;top: 80px;font-weight:bolder;" data-i18n="noun.about_us">About Us</a>
+            <a href="" style="font-size: 15px; position: absolute; right: 30%;top: 80px;font-weight:bolder;" data-i18n="noun.contact_us">Contact
                 Us</a>
             <a href=""
                style="font-size: 15px; position: absolute; right: 10%;top: 80px;font-weight:bolder;" data-i18n="noun.language">Language</a>
-        </form>
+			<div class="translate" style="top:25%; position: absolute ; right: 75%;top: 80px;font-weight:bolder;">
+				<select class="selectpicker" data-width="fit" onchange="changeLanguage(this)" id="lan_selecter">
+					<option value="en" data-content='English' data-i18n="noun.english"></option>
+					<option value="ch" data-content='Chinese' data-i18n="noun.chinese"></option>
+				</select>
+			</div>
+		</form>
     </div>
-
+	
+	
+	
     <!--
     <ul class="social mt-lg-0 mt-3">
         <li class="mr-sm-4 mr-1"><span class="fa mr-2 fa-envelope-open-o"></span> <a href="mailto:info@example.com">info@example.com</a>
@@ -142,39 +145,39 @@
     <button class="btn btn-block btn-info">Info</button>
     -->
     <div class="bodystyle">
-        <img src="../image/white.png" width=100% height=240px" style="position: absolute; top: 370px; ">
+        <img src="../image/white.png" width=120% height=240px" style="position: relative; top: -20px; ">
     </div>
 
-    <div>
+    <div align="center">
         <form>
             <a href="Lost-custo.html">
                 <img id="img1" src="../image/luggage.png"
-                     style="CURSOR: hand; position:absolute; left:24%; top:502px;width: 100px;height: 120px"
+                     style="CURSOR: hand; position:relative; right:20%; top:0;width: 10%;height: 10%"
                 >
             </a>
             <a href="all_policy.html" >
                 <img src="../image/buy.png"
-                     style="CURSOR: hand; position:absolute; left:49%; top:502px;width: 110px;height: 110px"
+                     style="CURSOR: hand; position:relative; left:0%; top:0;width: 11%;height: 10%"
                 >
             </a>
             <a href="policy.html">
                 <img id="img3" src="../image/access.png"
-                     style="CURSOR: hand; position:absolute; left:74%; top:502px;width: 80px;height: 110px "
+                     style="CURSOR: hand; position:relative; left:20%; top:0;width: 8%;height: 10% "
                 >
             </a>
 
         </form>
 
-        <div>
+        <div >
             <form>
                 <a href="Lost-custo.html"
-                   style="font-size: 20px; position: absolute;  left:24%;top: 625px;font-weight:bolder;" data-i18n="noun.luggage_lost">Luggage
+                   style="font-size: 100%; position: relative;  right:10%;top: 0;font-weight:bolder;" data-i18n="noun.luggage_lost">Luggage
                     Lost</a>
                 <a href="all_policy.html"
-                   style="font-size: 20px; position: absolute; left: 45%;top: 625px;font-weight:bolder;" data-i18n="noun.select_insurance">Select
+                   style="font-size: 100%; position: relative; left: 0%;top: 0;font-weight:bolder;" data-i18n="noun.select_insurance">Select
                     Insurance Product</a>
                 <a href="policy.html"
-                   style="font-size: 20px; position: absolute; left:73%;top: 625px;font-weight:bolder;" data-i18n="noun.access_policy">Access
+                   style="font-size: 100%; position: relative; left:10%;top: 0;font-weight:bolder;" data-i18n="noun.access_policy">Access
                     Your Policy</a>
             </form>
         </div>

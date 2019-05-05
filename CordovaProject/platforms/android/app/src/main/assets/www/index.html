@@ -24,15 +24,21 @@
             background-position: 0px 80px;
             background-size: 100%, 100%;
             background-repeat: no-repeat;
+			
+			width:100%; 
+			height:100%;
+			overflow: hidden;
         }
 
         p {
             margin: 1px;
             font-size: 18px;
+			
         }
 
         input:focus {
             border: 2px solid #FFFACD;
+			
         }
 
         br {
@@ -43,10 +49,12 @@
         select {
             border: 2px solid #BEBEBE;
             background-color: #D3D3D3;
+			
         }
 
         body {
             background-color: #ff8844;
+
         }
 
 
@@ -108,9 +116,9 @@
     </script>
 </head>
 <body id="bod" style="padding:1px;">
-<img src="image/icon.png" width="75px" height="75px" style="left:2px;top:2px;position:absolute;">
-<b style="font-size: 30px; left:90px;top:25px;position:absolute;">Hibernia-Sino Travel Insurance Company</b>
-<div class="translate" style="top:30px;position:absolute;right:200px">
+<img src="image/icon.png" width="10%" alt="icon">
+<b style="font-size: 150%; left:0%; top: 5%;position: relative">Hibernia-Sino Travel Insurance Company</b>
+<div class="translate" style="top:5%; position: relative ; float:right">
     <select class="selectpicker" data-width="fit" onchange="changeLanguage(this)" id="lan_selecter">
         <option value="en" data-i18n="noun.english"></option>
         <option value="ch" data-i18n="noun.chinese"></option>
@@ -120,8 +128,9 @@
     <div class="container login-container">
         <div class="row">
             <div class="col-md-6 login-form-2">
-                <h3 data-i18n="noun.userlogin">Users login</h3>
+                <h3 data-i18n="noun.userlogin">User login</h3>
 				<a href="employee/employee_dashboard.html" >asd</a>
+				<a href="customer/policy.html" >dsa</a>
                 <form onsubmit="event.preventDefault();">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="username" id="cu"
