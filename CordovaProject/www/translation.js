@@ -19,7 +19,7 @@ i18next.init({
                     gender:'Gender',
                     male:'Male',
                     female:'Female',
-                    about_us:'About Us',
+                    about_us:'Help',
                     contact_us:'Contact Us',
                     language:'Language',
                     luggage_lost:'Luggage Lost',
@@ -36,13 +36,19 @@ i18next.init({
                     flight:'Flight Number: ',
                     baggageno:'Baggage Check Number: ',
                     receipt:'Receipt(If You Have): ',
+					photos:'Photos ( If You Have )',
                     description:'Description: ',
                     submit:'Submit',
                     profile:'User Profile',
                     setting:'Settings',
                     Logout:'Logout',
                     processed_claim:'Processed Claims',
-                    unprocessed_claim:'Uprocessed Claims'
+                    unprocessed_claim:'Unprocessed Claims',
+                    claim_of_lostluggage:'Claims of Lost Luggage',
+                    small_policies:'More than professional',
+                    Summary_of_your_Claims:'Summary of the Claims',
+                    fair:' Please be fair and professional',
+                    detail:'Details'
                 }
             }
         },
@@ -64,7 +70,7 @@ i18next.init({
                     gender:'性别',
                     male:'男性',
                     female:'女性',
-                    about_us:'关于我们',
+                    about_us:'帮助',
                     contact_us:'联系我们',
                     language:'语言',
                     luggage_lost:'行李丢失',
@@ -81,13 +87,19 @@ i18next.init({
                     flight:'航班号: ',
                     baggageno:'托运行李单号: ',
                     receipt:'发票: ',
+					photos:'图片',
                     description:'细节描述: ',
                     submit:'提交',
                     profile:' 个人主页',
                     setting:' 设置',
                     Logout:' 退出',
                     processed_claim:'已处理',
-                    unprocessed_claim:'未处理'
+                    unprocessed_claim:'未处理',
+                    claim_of_lostluggage:'申请数量',
+                    small_policies:'不止是专业',
+                    Summary_of_your_Claims:'各项数量',
+                    fair:'耐心 专业',
+                    detail:'详情'
                 }
             }
         }
@@ -112,6 +124,3 @@ $(document).ready(function () {
     // i18next.changeLanguage(lan);
     // $('.translate').localize();
 });
-// $('.btnSubmit').addEventListener("click", function (event) {
-//     event.preventDefault()
-// });

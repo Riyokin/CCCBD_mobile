@@ -2,6 +2,9 @@
 
 <html>
 <head>
+    <head>
+        <meta name="google-signin-client_id" content="238990018787-95hmldt09vdln761u97bq18p7g8s45ee.apps.googleusercontent.com">
+    </head>
     <title>Login</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -109,19 +112,19 @@
 </head>
 <body id="bod" style="padding:1px;">
 <img src="image/icon.png" width="75px" height="75px" style="left:2px;top:2px;position:absolute;">
-<b style="font-size: 30px; left:90px;top:25px;position:absolute;">Hibernia-Sino Travel Insurance Company</b>
-<div class="translate" style="top:30px;position:absolute;right:200px">
+<b style="font-size: 30px; left:90px;top:25px;position:absolute;" id="needtohide">Hibernia-Sino Travel Insurance
+    Company</b>
+<div class="translate" style="top:30px;position:absolute;right:10%">
     <select class="selectpicker" data-width="fit" onchange="changeLanguage(this)" id="lan_selecter">
         <option value="en" data-i18n="noun.english"></option>
         <option value="ch" data-i18n="noun.chinese"></option>
     </select>
 </div>
-<div class="translate">
+<div class="translate" id="loginbody">
     <div class="container login-container">
         <div class="row">
             <div class="col-md-6 login-form-2">
-                <h3 data-i18n="noun.userlogin">Users login</h3>
-				<a href="employee/employee_dashboard.html" >asd</a>
+                <h3 data-i18n="noun.userlogin">User login</h3>
                 <form onsubmit="event.preventDefault();">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="username" id="cu"
@@ -131,16 +134,44 @@
                         <input type="password" class="form-control" placeholder="password" id="cp"
                                data-i18n="[placeholder]noun.password"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" >
                         <input type="submit" class="btnSubmit" value="Login"
                                onclick="logincust()" data-i18n="[value]noun.login"/>
                     </div>
+                    <center><div class="form-group" id="my-signin2"></div></center>
+                    <script>
+                        function onSuccess(googleUser) {
+                            console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+                        }
+                        function onFailure(error) {
+                            console.log(error);
+                        }
+                        function renderButton() {
+                            gapi.signin2.render('my-signin2', {
+                                'scope': 'profile email',
+                                'width': 240,
+                                'height': 50,
+                                'longtitle': true,
+                                'theme': 'dark',
+                                'onsuccess': onSuccess,
+                                'onfailure': onFailure
+                            });
+                        }
+                    </script>
+
+                    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
                     <div class="form-group">
                         <a href="register_page_Eng.html" class="ForgetPwd" data-i18n="noun.create">Create new
                             account</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="reset_page_customer.html" class="ForgetPwd" data-i18n="noun.forget">Forget Password?</a>
+                        <mylable>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </mylable>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="reset_page_customer.html" class="ForgetPwd" data-i18n="noun.forget">Forget
+                            Password?</a>
+
                     </div>
+
                 </form>
             </div>
             <div class="col-md-6 login-form-1">
@@ -159,15 +190,25 @@
                                data-i18n="[value]noun.login" onclick="loginstaf()"/>
                     </div>
                     <div class="form-group">
-                        <a href="reset_page_employee.html" class="ForgetPwd" data-i18n="noun.forget">Forget Password?</a>
+                        <a href="reset_page_employee.html" class="ForgetPwd" data-i18n="noun.forget">Forget
+                            Password?</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-<script color="0,0,0" opacity='0.75' count="128"  src="lib/canvas-nest.js"></script>
+<script>
+    $(document).ready(function () {
+        if (document.body.clientWidth<420) {
+            $("#needtohide").hide();
+            $("#loginbody").css({"top":"36px","position":"relative"});
+            $("mylable").hide();
+            $("body").css({"background-image":"url('')"});
+        }
+    });
+</script>
+<script color="0,0,0" opacity='0.75' count="16" src="lib/canvas-nest.js"></script>
 </body>
 
 </html>

@@ -59,13 +59,13 @@
                 if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                     myArr = JSON.parse(xmlhttp.responseText);
                     document.getElementById('name').innerHTML = myArr['real_name'];
-                    document.getElementById('ClaimNo').innerHTML = "ClaimNo:"+myArr['ClaimNo'];
-                    if(myArr['feedback']!=null){
-                        document.getElementById('detail').innerHTML = "Claim Date:"+myArr['claim_date']+"<br>"+"Loss date:"+myArr['loss_date']+"<br>"+"Policy Number:"+myArr['policyNo']+"<br>"+"Details:"+myArr['detail']+"<br>"+"Feedback:"+myArr['feedback'];
-                    }else{
-                        document.getElementById('detail').innerHTML = "Claim Date:"+myArr['claim_date']+"<br>"+"Loss date:"+myArr['loss_date']+"<br>"+"Policy Number:"+myArr['policyNo']+"<br>"+"Details:"+myArr['detail'];
+                    document.getElementById('ClaimNo').innerHTML = "ClaimNo:" + myArr['ClaimNo'];
+                    if (myArr['feedback'] != null) {
+                        document.getElementById('detail').innerHTML = "Claim Date:" + myArr['claim_date'] + "<br>" + "Loss date:" + myArr['loss_date'] + "<br>" + "Policy Number:" + myArr['policyNo'] + "<br>" + "Details:" + myArr['detail'] + "<br>" + "Feedback:" + myArr['feedback'];
+                    } else {
+                        document.getElementById('detail').innerHTML = "Claim Date:" + myArr['claim_date'] + "<br>" + "Loss date:" + myArr['loss_date'] + "<br>" + "Policy Number:" + myArr['policyNo'] + "<br>" + "Details:" + myArr['detail'];
                     }
-                    
+
                 }
 
             };
@@ -110,23 +110,22 @@
             xhr.send(urlencodeFormData(mydata));
         }
     </script>
-    }
 </head>
 <body onload="buildHtmlTable('#dataTables-example')">
 <div id="wrapper">
     <nav class="navbar navbar-default top-navbar" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+        <div class="navbar-header" id="xiala1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse"
+                    id="button111">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.html"><i class="fa fa-comments"></i>
+            <a class="navbar-brand" href="../index.html" id="title1"><i class="fa fa-comments"></i>
                 <strong>Hibernia-Sino</strong></a>
         </div>
-
-        <ul class="nav navbar-top-links navbar-right">
+        <ul class="nav navbar-top-links navbar-right" id="xiala2">
 
             <!-- /.dropdown -->
             <li class="dropdown">
@@ -225,6 +224,7 @@
 
 
 </div>
+</body>
 <!-- /. WRAPPER  -->
 <!-- JS Scripts-->
 <!-- jQuery Js -->
@@ -243,6 +243,16 @@
 </script>
 <!-- Custom Js -->
 <script src="../assets/js/custom-scripts.js"></script>
-
-
-</body>
+<script type="text/javascript">
+    if (document.body.clientWidth<420) {
+        document.getElementById('title1').style.display = 'none';
+        document.getElementById('xiala2').style.display = 'none';
+        var a = document.getElementById('xiala1').innerHTML;
+        document.getElementById('xiala1').innerHTML = a + "<ul class=\"nav navbar-top-links navbar-right\" id=\"xiala2\"><li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" aria-expanded=\"false\"><i class=\"fa fa-user fa-fw\"></i> <i class=\"fa fa-caret-down\"></i></a><ul class=\"dropdown-menu dropdown-user\"><li><a href=\"#\"><i class=\"fa fa-user fa-fw\"></i> User Profile</a></li><li><a href=\"#\"><i class=\"fa fa-gear fa-fw\"></i> Settings</a></li><li class=\"divider\"></li><li><a href=\"../index.html\"><i class=\"fa fa-sign-out fa-fw\"></i> Logout</a></li></ul></li></ul>"
+        document.getElementById('button111').click();
+        document.getElementById('button111').click();
+        document.getElementById('button1').style.left = '-35%';
+        document.getElementById('button2').style.left = '-35%';
+        document.getElementById('button3').style.left = '-35%';
+    }
+</script>

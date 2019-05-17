@@ -22,7 +22,6 @@
     <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet"/>
 
     <script>
-
         // Builds the HTML Table out of myList.
         function buildHtmlTable(selector) {
             $(selector).empty();
@@ -86,18 +85,17 @@
 <body onload="buildHtmlTable('#dataTables-example')" class="translate">
 <ataT id="wrapper">
     <nav class="navbar navbar-default top-navbar" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+        <div class="navbar-header" id="xiala1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse" aria-expanded="false" id="button111">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.html"><i class="fa fa-comments"></i>
-                <strong>Hibernia-Sino</strong></a>
+            <a class="navbar-brand" href="../index.html" id="title1"><i class="fa fa-comments"></i> <strong>Hibernia-Sino</strong></a>
         </div>
 
-        <ul class="nav navbar-top-links navbar-right">
+        <ul class="nav navbar-top-links navbar-right" id="xiala2">
 
             <!-- /.dropdown -->
             <li class="dropdown">
@@ -105,7 +103,7 @@
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#" ><i class="fa fa-user fa-fw" ></i><mylable data-i18n="noun.profile"> User Profile</mylable></a>
+                    <li><a href="User_Profile.html" ><i class="fa fa-user fa-fw" ></i><mylable data-i18n="noun.profile"> User Profile</mylable></a>
                     </li>
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i><mylable data-i18n="noun.setting"> Settings</mylable></a>
                     </li>
@@ -121,9 +119,9 @@
 
 
     <!--/. NAV TOP  -->
-    <nav class="navbar-default navbar-side" role="navigation">
-        <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu">
+    <nav class="navbar-default navbar-side" role="navigation" >
+        <div id="shouqi" class="sidebar-collapse" >
+            <ul class="nav" id="main-menu" >
 
                 <li>
                     <a href="homepage_customer.html"><i class="fa fa-dashboard"></i>  <mylable data-i18n="noun.dashboard">Dashboard</mylable></a>
@@ -163,7 +161,6 @@
                 <div class="col-md-12">
                     <h1 class="page-header" data-i18n="noun.unprocessed_claim">
                         Unprocessed claim
-                        <small> Please be fair and professional</small>
                     </h1>
                 </div>
             </div>
@@ -173,8 +170,8 @@
                 <div class="col-md-12">
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Advanced Tables
+                        <div class="panel-heading" >
+                            <mylable data-i18n="noun.detail"></mylable>
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -217,7 +214,21 @@
 <script>
     $(document).ready(function () {
         $('#dataTables-example').dataTable();
+
     });
+    if (document.body.clientWidth<420){
+        document.getElementById('title1').style.display='none';
+        document.getElementById('xiala2').style.display='none';
+        var a = document.getElementById('xiala1').innerHTML;
+        document.getElementById('xiala1').innerHTML = a+"<ul class=\"nav navbar-top-links navbar-right\" id=\"xiala2\"><li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" aria-expanded=\"false\"><i class=\"fa fa-user fa-fw\"></i> <i class=\"fa fa-caret-down\"></i></a><ul class=\"dropdown-menu dropdown-user\"><li><a href=\"User_Profile.html\"><i class=\"fa fa-user fa-fw\"></i> User Profile</a></li><li><a href=\"#\"><i class=\"fa fa-gear fa-fw\"></i> Settings</a></li><li class=\"divider\"></li><li><a href=\"../index.html\"><i class=\"fa fa-sign-out fa-fw\"></i> Logout</a></li></ul></li></ul>"
+
+        document.getElementById('button111').click();
+        document.getElementById('button111').click();
+    }
+    if(location.href.indexOf("#reloaded")===-1){
+        location.href=location.href+"#reloaded";
+        location.reload();
+    }
 </script>
 <!-- Custom Js -->
 <script src="assets/js/custom-scripts.js"></script>

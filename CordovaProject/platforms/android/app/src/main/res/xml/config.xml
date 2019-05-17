@@ -4,12 +4,12 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <name>TestApp</name>
+    <name>Hibernia-Sino Insurance</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Hibernia-Sino Insurance Application
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="jingrui.chen@ucdconnect.ie" href="http://cordova.io">
+        CCCBD development Team
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -19,6 +19,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <icon src="atom.png" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
 </widget>
