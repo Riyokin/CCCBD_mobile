@@ -34,7 +34,6 @@
             height: 100%;
             width: 100%;
             position: absolute;
-            left: 30%;
             top: 40%;
         }
 
@@ -59,19 +58,17 @@
         input[type="button"] {
             background-repeat: no-repeat;
             background-image: url("image/submitSmile0.png");
-            width: 6em;
-            height: 6em;
+            width: 5em;
+            height: 5em;
             background-color: transparent;
             border-style: none;
-            position: absolute;
-            left: 16%
         }
 
         input[type="button"]:hover {
             background-repeat: no-repeat;
             background-image: url("image/submitSmile1.png");
-            width: 6em;
-            height: 6em;
+            width: 5em;
+            height: 5em;
             background-color: transparent;
             border-style: none;
         }
@@ -178,10 +175,16 @@
     </script>
 </head>
 <body style="background-color: #ff8844">
-<a href="index.html"><img src="image/icon.png" width="120px" alt="icon"></a>
-<b style="font-size: 30px; position: absolute; top: 35px">Hibernia-Sino Travel Insurance Company</b>
-<div class="background" style="height: 800px;width: 100%;">
-    <div class="content" style="height: 400px;width: 100%;">
+<a href="index.html"><img src="image/icon.png" width="10%" alt="icon"></a>
+<b style="font-size: 150%; left:0%; top: 5%;position: relative">Hibernia-Sino Travel Insurance Company</b>
+<div class="translate" style="top:5%; position: relative ; float:right">
+    <select class="selectpicker" data-width="fit" onchange="changeLanguage(this)" id="lan_selecter">
+        <option value="en" data-content='English' data-i18n="noun.english"></option>
+        <option value="ch" data-content='Chinese' data-i18n="noun.chinese"></option>
+    </select>
+</div>
+<div class="background" style="height: 800px;width: 100%;" align="center">
+    <div class="content" style="height: 0%;width: 100%;top:25%">
         <form onsubmit="event.preventDefault();">
             <input type="text" name="username" placeholder="username" id="username" onchange=""
                    onkeypress="detectCapsLock(event)"><br>
@@ -199,11 +202,6 @@
         </form>
     </div>
 </div>
-<div class="translate" style="top:30px;position:absolute;right:200px">
-    <select class="selectpicker" data-width="fit" onchange="changeLanguage(this)" id="lan_selecter">
-        <option value="en" data-content='English' data-i18n="noun.english"></option>
-        <option value="ch" data-content='Chinese' data-i18n="noun.chinese"></option>
-    </select>
-</div>
+
 </body>
 </html>
